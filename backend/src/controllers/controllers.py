@@ -1,8 +1,13 @@
 from flask_jwt_extended import create_access_token
 from extensions import db, bcrypt
-from models.user import User
+from models.user import User, UserListItem
+import requests
+from config import Config
 
-# AUTH
+TMDB_BASE_URL = Config.TMDB_BASE_URL
+TMDB_API_KEY = Config.TMDB_API_KEY
+
+# AUTH CONTROLLERS
 def register(data):
     if not data or not data.get("username") or not data.get("email") or not data.get("password"):
         return {"message": "Fill in all fields"}, 400
@@ -73,3 +78,55 @@ def delete(user_id):
     db.session.commit()
 
     return {"message": "Account deleted successfully"}, 200
+
+# PERSONAL LIST CONTROLLERS
+def fetch_user_list(user_id):
+    items = UserListItem.query.filter_by(user_id=user_id).all()
+    return [item.to_dict() for item in items], 200
+
+
+def add_list_item(user_id, data):
+    if not data or not data.get("tmdb_id") or not data.get("media_type"):
+        return {"message": "Invalid data"}, 400
+
+    item = UserListItem(
+        user_id=user_id,
+        tmdb_id=data["tmdb_id"],
+        media_type=data["media_type"]
+    )
+
+    db.session.add(item)
+    db.session.commit()
+
+    return {"message": "Added to list"}, 201
+
+
+def update_list_item(item_id, data):
+    item = UserListItem.query.get(item_id)
+    if not item:
+        return {"message": "Item not found"}, 404
+
+    item.watched = data.get("watched", item.watched)
+    item.liked = data.get("liked", item.liked)
+    item.in_list = data.get("in_list", item.in_list)
+
+    db.session.commit()
+    return {"message": "Updated"}, 200
+
+
+def remove_list_item(item_id):
+    item = UserListItem.query.get(item_id)
+    if not item:
+        return {"message": "Item not found"}, 404
+
+    db.session.delete(item)
+    db.session.commit()
+
+    return {"message": "Removed"}, 200
+
+# TMDB CONTROLLER
+def tmdb(endpoint, params=None):
+    if params is None:
+        params = {}
+    params["api_key"] = TMDB_API_KEY
+    return requests.get(f"{TMDB_BASE_URL}{endpoint}", params=params).json()
