@@ -5,20 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MovieCat</title>
     <!-- Fonts -->
-    <!-- Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap"
       rel="stylesheet"
     />
+    <!-- Icons -->
     <script
       src="https://kit.fontawesome.com/60c94ed1cd.js"
       crossorigin="anonymous"
     ></script>
   </head>
   <body data-page="tvshows">
-    <div id="app"></div>
+    <div id="app">
+      <header class="header">
+        <div class="container">
+          <div class="header__wrapper">
+            <a href="/" class="header__logo"
+              ><img class="logo" src="/Logo.png" alt="MovieCat Logo"
+            /></a>
+            <div class="header__info">
+              <nav class="header__nav">
+                <ul>
+                  <li>
+                    <a href="/src/pages/movies.html" class="header__link"
+                      >Explore</a
+                    >
+                  </li>
+                  <li>
+                    <a href="/src/pages/explore.html" class="header__link"
+                      >Movies</a
+                    >
+                  </li>
+                  <li>
+                    <a href="/src/pages/tvshows.html" class="header__link"
+                      >TV Shows</a
+                    >
+                  </li>
+                  <li>
+                    <a href="/src/pages/newandpopular.html" class="header__link"
+                      >New & Popular</a
+                    >
+                  </li>
+                  <li>
+                    <a href="/src/pages/mylist.html" class="header__link"
+                      >My List</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+              <div class="header__cta">
+                <!-- DATA -->
+              </div>
+            </div>
+            <button class="menu-btn">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+      <main class="main main--tvshows"></main>
+      <footer class="footer">
+        <div class="container">
+          <div class="footer__wrapper">
+            <div class="footer__header">
+              <img src="/Logo.png" alt="MovieCat Logo" />
+              <ul class="footer__cta">
+                <li>
+                  <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="footer__links">
+              <ul>
+                <li>
+                  <a href="/src/pages/movies.html">Explore</a>
+                </li>
+                <li>
+                  <a href="/src/pages/newandpopular.html">New & Popular</a>
+                </li>
+                <li>
+                  <a href="/src/pages/mylist.html">My List</a>
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <a href="#">FAQ</a>
+                </li>
+                <li>
+                  <a href="#">About Us</a>
+                </li>
+                <li>
+                  <a href="#">Contact</a>
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <a href="#">Github Repo</a>
+                </li>
+                <li>
+                  <a href="#">Project Docs</a>
+                </li>
+                <li>
+                  <a href="#">SAE London</a>
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <a href="#">TMDB</a>
+                </li>
+                <li>
+                  <a href="#">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="#">Privacy Policy</a>
+                </li>
+              </ul>
+            </div>
+            <div class="footer__copyright">
+              <p>© 2026 MovieCat. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

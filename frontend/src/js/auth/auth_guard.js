@@ -1,5 +1,3 @@
-import { notyf } from "./notyf";
-
 export function checkAuth() {
   const token = localStorage.getItem("token");
 

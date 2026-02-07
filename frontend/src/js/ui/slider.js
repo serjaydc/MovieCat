@@ -1,6 +1,5 @@
-// Using bundle import (includes all modules)
 import Swiper from "swiper/bundle";
-import "swiper/css/bundle"; // includes all styles
+import "swiper/css/bundle";
 
 export function initSwiper(selector, options = {}) {
   return new Swiper(selector, {

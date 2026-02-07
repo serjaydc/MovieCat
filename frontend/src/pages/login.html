@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MovieCat</title>
     <!-- Fonts -->
-    <!-- Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap"
       rel="stylesheet"
     />
+    <!-- Icons -->
     <script
       src="https://kit.fontawesome.com/60c94ed1cd.js"
       crossorigin="anonymous"
@@ -22,7 +22,9 @@
       <header class="header">
         <div class="container">
           <div class="header__wrapper">
-            <a href="/" class="header__logo">MovieCat</a>
+            <a href="/" class="header__logo"
+              ><img class="logo" src="/Logo.png" alt="MovieCat Logo"
+            /></a>
             <div class="header__info">
               <nav class="header__nav">
                 <ul>
@@ -63,34 +65,108 @@
           </div>
         </div>
       </header>
-      <section class="auth">
-        <div class="container">
-          <div class="auth__wrapper">
-            <img src="/form-bg.png" alt="Register Image" class="auth__bg" />
-            <form class="form" id="loginForm">
-              <h1 class="form__title">Login</h1>
-              <div class="form__group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" />
-              </div>
-              <div class="form__group">
-                <div class="form__group--ext">
-                  <label for="password">Password</label>
-                  <button type="button" class="btn-icon btn-password">
-                    Show <i class="fa-solid fa-eye"></i>
-                  </button>
+      <main class="main main--auth">
+        <section class="auth">
+          <div class="container">
+            <div class="auth__wrapper">
+              <img src="/form-bg.png" alt="Register Image" class="auth__bg" />
+              <form class="form" id="loginForm">
+                <h1 class="form__title">Login</h1>
+                <div class="form__group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" />
                 </div>
-                <input type="password" id="password" name="password" />
-              </div>
-              <button type="submit" class="btn btn-primary">Login</button>
-              <div class="auth__cta">
-                <p>Don't have an account?</p>
-                <a href="/src/pages/register.html">Sign Up</a>
-              </div>
-            </form>
+                <div class="form__group">
+                  <div class="form__group--ext">
+                    <label for="password">Password</label>
+                    <button type="button" class="btn-icon btn-password">
+                      Show <i class="fa-solid fa-eye"></i>
+                    </button>
+                  </div>
+                  <input type="password" id="password" name="password" />
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <div class="auth__cta">
+                  <p>Don't have an account?</p>
+                  <a href="/src/pages/register.html">Sign Up</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="container">
+          <div class="footer__wrapper">
+            <div class="footer__header">
+              <img src="/Logo.png" alt="MovieCat Logo" />
+              <ul class="footer__cta">
+                <li>
+                  <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="footer__links">
+              <ul>
+                <li>
+                  <a href="/src/pages/movies.html">Explore</a>
+                </li>
+                <li>
+                  <a href="/src/pages/newandpopular.html">New & Popular</a>
+                </li>
+                <li>
+                  <a href="/src/pages/mylist.html">My List</a>
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <a href="#">FAQ</a>
+                </li>
+                <li>
+                  <a href="#">About Us</a>
+                </li>
+                <li>
+                  <a href="#">Contact</a>
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <a href="#">Github Repo</a>
+                </li>
+                <li>
+                  <a href="#">Project Docs</a>
+                </li>
+                <li>
+                  <a href="#">SAE London</a>
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <a href="#">TMDB</a>
+                </li>
+                <li>
+                  <a href="#">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="#">Privacy Policy</a>
+                </li>
+              </ul>
+            </div>
+            <div class="footer__copyright">
+              <p>© 2026 MovieCat. All rights reserved.</p>
+            </div>
           </div>
         </div>
-      </section>
+      </footer>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>

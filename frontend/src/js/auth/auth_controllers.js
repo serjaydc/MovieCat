@@ -1,6 +1,6 @@
-import { apiAuth } from "../core/api.js";
-import { checkAuth } from "../core/checkAuth.js";
-import { notyf } from "../core/notyf.js";
+import { notyf } from "../ui/notyf.js";
+import { apiAuth } from "../api/api.js";
+import { checkAuth } from "./auth_guard.js";
 
 export function initLogin() {
   const form = document.getElementById("loginForm");
@@ -14,7 +14,7 @@ export function initLogin() {
     };
 
     try {
-      const res = await fetch(`${apiAuth}login`, {
+      const res = await fetch(`${apiAuth}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -53,7 +53,7 @@ export function initRegister() {
     };
 
     try {
-      const res = await fetch(`${apiAuth}register`, {
+      const res = await fetch(`${apiAuth}/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

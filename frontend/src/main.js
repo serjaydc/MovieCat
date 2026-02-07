@@ -1,13 +1,13 @@
 import "./index.scss";
 
+import { initShowPassword } from "./js/ui/auth";
+import { initHeader } from "./js/ui/header";
+
 import {
   initLogin,
   initProfile,
   initRegister,
-} from "./js/controllers/auth_controllers";
-
-import { initShowPassword } from "./js/ui/auth";
-import { initHeader } from "./js/ui/header";
+} from "./js/auth/auth_controllers";
 
 const page = document.body.dataset.page;
 
@@ -15,9 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeader();
 
   switch (page) {
-    case "home":
-    // initHome();
-    // break;
     case "login":
       initLogin();
       initShowPassword();
