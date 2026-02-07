@@ -1,0 +1,53 @@
+:root {
+  --bg-primary: rgba(2, 6, 23, 1);
+  --bg-secondary: rgba(15, 23, 42, 0.5);
+  --bg-white: rgba(255, 255, 255, 1);
+
+  --bg-button: rgba(107, 114, 128, 0.5);
+  --bg-button-hover: rgba(107, 114, 128, 0.75);
+
+  --text-primary: rgba(255, 255, 255, 1);
+  --text-secondary: rgba(255, 255, 255, 0.75);
+  --text-tertiary: rgba(255, 255, 255, 0.5);
+  --text-black: rgba(0, 0, 0, 1);
+
+  --color-green-base: rgba(34, 197, 94, 1);
+  --color-green-600: rgba(22, 163, 74, 1);
+  --color-green-700: rgba(21, 128, 61, 1);
+
+  --color-purple-base: rgba(168, 85, 247, 1);
+  --color-purple-600: rgba(147, 51, 234, 1); // Text Hover
+  --color-purple-700: rgba(126, 34, 206, 1);
+
+  --color-pink-base: rgba(236, 72, 153, 1);
+  --color-pink-600: rgba(219, 39, 119, 1);
+  --color-pink-700: rgba(190, 24, 93, 1);
+
+  --color-yellow-base: rgba(234, 179, 8, 1);
+
+  --color-orange-base: rgba(251, 146, 60, 1);
+  --color-orange-600: rgb(234, 88, 12, 1);
+  --color-orange-700: rgb(194, 65, 12, 1);
+
+  --border-primary: rgba(255, 255, 255, 0.5);
+  --border-secondary: rgba(255, 255, 255, 0.25);
+
+  --border-radius-sm: 0.5rem;
+  --border-radius-md: 1rem;
+  --border-radius-lg: 2rem;
+  --border-radius-xl: 6.25rem;
+  --border-radius-full: 100%;
+
+  --bg-gradient: linear-gradient(
+    180deg,
+    rgba(168, 85, 247, 1) 0%,
+    rgba(236, 72, 153, 1) 100%
+  );
+  --bg-gradient-reverse: linear-gradient(
+    90deg,
+    rgba(168, 85, 247, 1) 0%,
+    rgba(236, 72, 153, 1) 100%
+  );
+
+  --font-main: "Space Grotesk", sans-serif;
+}

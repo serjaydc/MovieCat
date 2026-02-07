@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MovieCat</title>
+    <!-- Fonts -->
+    <!-- Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/60c94ed1cd.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body data-page="mylist">
+    <div id="app">
+      <header class="header">
+        <div class="container">
+          <div class="header__wrapper">
+            <a href="/" class="header__logo">MovieCat</a>
+            <div class="header__info">
+              <nav class="header__nav">
+                <ul>
+                  <li>
+                    <a href="/src/pages/movies.html" class="header__link"
+                      >Explore</a
+                    >
+                  </li>
+                  <li>
+                    <a href="/src/pages/explore.html" class="header__link"
+                      >Movies</a
+                    >
+                  </li>
+                  <li>
+                    <a href="/src/pages/tvshows.html" class="header__link"
+                      >TV Shows</a
+                    >
+                  </li>
+                  <li>
+                    <a href="/src/pages/newandpopular.html" class="header__link"
+                      >New & Popular</a
+                    >
+                  </li>
+                  <li>
+                    <a href="/src/pages/mylist.html" class="header__link"
+                      >My List</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+              <div class="header__cta">
+                <!-- DATA -->
+              </div>
+            </div>
+            <button class="menu-btn">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <section class="mylist pt-100">
+          <div class="container">
+            <div class="mylist__header">
+              <h1>My List</h1>
+              <p>You have no movies or TV shows in your list.</p>
+            </div>
+            <div class="mylist__wrapper"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

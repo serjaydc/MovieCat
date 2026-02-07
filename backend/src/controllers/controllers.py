@@ -25,7 +25,7 @@ def register(data):
         "id": user.id,
         "username": user.username,
         "email": user.email,
-        "token": create_access_token(identity=user.id)
+        "token": create_access_token(identity=str(user.id))
     }, 201
 
 
@@ -42,7 +42,7 @@ def login(data):
         "id": user.id,
         "username": user.username,
         "email": user.email,
-        "token": create_access_token(identity=user.id)
+        "token": create_access_token(identity=str(user.id))
     }, 200
 
 

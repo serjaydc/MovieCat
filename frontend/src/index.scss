@@ -1,0 +1,12 @@
+// Base
+@use "./styles/base/base";
+@use "./styles/base/reset";
+@use "./styles/base/variables";
+
+// Components
+@use "./styles/components/header";
+@use "./styles/components/footer";
+@use "./styles/components/auth";
+
+// Pages
+@use "./styles/layout/home";
