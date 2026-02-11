@@ -54,6 +54,22 @@ def single_tv(tv_id):
 def by_genre(media_type, genre_id):
     return jsonify(tmdb(f"/discover/{media_type}", {"with_genres": genre_id}))
 
+@tmdb_routes.route("/trending")
+def trending():
+    return jsonify(tmdb("/trending/all/week"))
+
+@tmdb_routes.route("/new-releases")
+def new_releases():
+    return jsonify(tmdb("/movie/now_playing"))
+
+@tmdb_routes.route("/coming-soon")
+def coming_soon():
+    return jsonify(tmdb("/movie/upcoming"))
+
+@tmdb_routes.route("/top-rated")
+def top_rated():
+    return jsonify(tmdb("/movie/top_rated"))
+
 # PERSONAL LIST ROUTES
 list_routes = Blueprint('list_routes', __name__, url_prefix='/api/list')
 

@@ -135,3 +135,14 @@ html {
   font-size: clamp(1.25rem, 2vw, 1.75rem);
   margin-bottom: 1rem;
 }
+
+.page-title {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  color: var(--color-purple-base);
+}
+
+.page-description {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}

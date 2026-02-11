@@ -1,13 +1,15 @@
 import "./index.scss";
 
-import { initShowPassword } from "./js/ui/auth";
-import { initHeader } from "./js/ui/header";
+import { initShowPassword } from "./js/ui/auth.js";
+import { initHeader } from "./js/ui/header.js";
 
 import {
   initLogin,
   initProfile,
   initRegister,
-} from "./js/auth/auth_controllers";
+} from "./js/auth/auth_controllers.js";
+
+import { initHome } from "./js/pages/home.page.js";
 
 const page = document.body.dataset.page;
 
@@ -26,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
     case "profile":
       initProfile();
       break;
+    case "home":
+      initHome();
     default:
       break;
   }
