@@ -4,11 +4,11 @@ import "swiper/css/bundle";
 export function initSwiper(selector, options = {}) {
   return new Swiper(selector, {
     loop: true,
-    spaceBetween: 20,
+    spaceBetween: 16,
     slidesPerView: 4,
     navigation: {
-      nextEl: `.swiper-button-next`,
-      prevEl: `.swiper-button-prev`,
+      nextEl: `.swiper-btn-next`,
+      prevEl: `.swiper-btn-prev`,
     },
     breakpoints: {
       1440: { slidesPerView: 4 },

@@ -10,6 +10,7 @@ import {
 } from "./js/auth/auth_controllers.js";
 
 import { initHome } from "./js/pages/home.page.js";
+import { initMyList } from "./js/pages/mylist.page.js";
 
 const page = document.body.dataset.page;
 
@@ -30,6 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
       break;
     case "home":
       initHome();
+      break;
+    case "mylist":
+      initMyList();
     default:
       break;
   }

@@ -3,8 +3,8 @@ export function checkAuth() {
 
   if (!token) {
     window.location.href = "/src/pages/login.html";
-    return false;
+    return null;
   }
 
-  return (true, token);
+  return { token };
 }

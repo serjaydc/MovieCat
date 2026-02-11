@@ -3,6 +3,7 @@ import {
   fetchTrendingMovies,
 } from "../controllers/movie_controller.js";
 import { initSwiper } from "../ui/slider.js";
+import { addItemToUserlist } from "../controllers/userlist_controller.js";
 
 const displayHeroMovie = async () => {
   const movie = await fetchRandomMovie();
@@ -19,20 +20,40 @@ const displayHeroMovie = async () => {
 `;
 
   heroWrapper.innerHTML = `
-  <div class="hero__details">
-    <h2 class="hero__title">${movie.title}</h2>
-    <p class="hero__overview">${movie.overview}</p>
+  <div 
+    class="hero__content"
+    data-tmdb-id="${movie.id}"
+    data-media-type="${movie.media_type}"
+    data-title="${movie.title}"
+    data-poster-path="${movie.poster_path}"
+    data-release-date="${movie.release_date || ""}"
+    data-vote-average="${movie.vote_average || ""}"
+    data-liked="${movie.liked}"
+  >
+    <div class="hero__details">
+      <h2 class="hero__title">${movie.title}</h2>
+      <p class="hero__overview">${movie.overview}</p>
+    </div>
+
+    <div class="hero__cta">
+      <button class="btn btn-addToList">
+        <i class="fa-solid fa-plus"></i>
+        ${movie.liked ? "Added ✓" : "Add to List"}
+      </button>
+
+      <button class="btn btn-secondary">
+        <i class="fa-regular fa-circle-question"></i>
+        More Info
+      </button>
+    </div>
+
+    <ul class="hero__info">
+      <li>${movie.adult === false ? "PG-13" : "PG-18"}</li>
+      <li>${movie.runtime ? `${(movie.runtime / 60).toFixed(0)}h ${movie.runtime % 60}m` : ""}</li>
+      <li>${movie.release_date ? movie.release_date.slice(0, 4) : ""}</li>
+      <li>${movie.genres.map((genre) => genre.name).join(" • ")}</li>
+    </ul>
   </div>
-  <div class="hero__cta">
-    <button class="btn btn-addToList"><i class="fa-solid fa-plus"></i> Add to List</button>
-    <button class="btn btn-secondary"><i class="fa-regular fa-circle-question"></i> More Info</button>
-  </div>
-  <ul class="hero__info">
-    <li>${movie.adult === false ? "PG-13" : "PG-18"}</li>
-    <li>${movie.runtime ? `${(movie.runtime / 60).toFixed(0)}h ${movie.runtime % 60}m` : ""}</li>
-    <li>${movie.release_date ? movie.release_date.slice(0, 4) : ""}</li>
-    <li>${movie.genres.map((genre) => genre.name).join(" • ")}</li>
-  </ul>
 `;
 };
 
@@ -44,7 +65,7 @@ const displaySwiperMovies = async () => {
   data.results.forEach((movie) => {
     swiperWrapper.innerHTML += `
       <div class="swiper-slide">
-        <a href="#" class="content-card">
+        <a href="#" class="content-card" data-tmdb-id="${movie.id}" data-media-type="movie" data-title="${movie.title || movie.name}" data-poster-path="${movie.poster_path}" data-release-date="${movie.release_date || ""}" data-vote-average="${movie.vote_average || ""}">
           <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${movie.title || movie.name}" />
           <div class="content-card__info">
           <div class="content-card__text">
@@ -52,7 +73,8 @@ const displaySwiperMovies = async () => {
           <div class="content-card__details">
             <p>${movie.vote_average ? movie.vote_average.toFixed(1) : ""}</p>
             <p>${movie.release_date ? movie.release_date.slice(0, 4) : ""}</p>
-          </div></div>
+          </div>
+          </div>
             <button class="btn btn-addToList"><i class="fa-solid fa-plus"></i> Add To List</button>
           </div>
         </a>
@@ -62,6 +84,31 @@ const displaySwiperMovies = async () => {
 
   initSwiper(swiper);
 };
+
+document.addEventListener("click", async (e) => {
+  const button = e.target.closest(".btn-addToList");
+  if (!button) return;
+  e.preventDefault();
+  e.stopPropagation();
+
+  const container =
+    button.closest(".content-card") || button.closest(".hero__content");
+
+  if (!container) return;
+
+  const item = {
+    tmdb_id: container.dataset.tmdbId,
+    media_type: container.dataset.mediaType,
+    title: container.dataset.title,
+    poster_path: container.dataset.posterPath,
+    release_date: container.dataset.releaseDate,
+    vote_average: container.dataset.voteAverage,
+  };
+
+  const result = await addItemToUserlist(item);
+
+  if (result) button.textContent = "Added ✓";
+});
 
 export const initHome = () => {
   displayHeroMovie();
