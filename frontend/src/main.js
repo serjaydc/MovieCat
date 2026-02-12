@@ -11,6 +11,7 @@ import {
 
 import { initHome } from "./js/pages/home.page.js";
 import { initMyList } from "./js/pages/mylist.page.js";
+import { initSingle } from "./js/pages/single.page.js";
 
 const page = document.body.dataset.page;
 
@@ -34,6 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
       break;
     case "mylist":
       initMyList();
+      break;
+    case "singlemovie":
+      initSingle();
+      break;
     default:
       break;
   }

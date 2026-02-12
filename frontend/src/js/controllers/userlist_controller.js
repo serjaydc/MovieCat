@@ -84,5 +84,6 @@ export const removeItemFromUserlist = async (id) => {
     notyf.error(result.message || "Something went wrong");
     return null;
   }
+  notyf.success("Removed from your list!");
   return result;
 };
