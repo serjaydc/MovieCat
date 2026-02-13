@@ -19,6 +19,10 @@
       background-color: var(--bg-button-hover);
     }
   }
+  h2 {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    margin-bottom: 0.5rem;
+  }
 }
 
 .content {
@@ -179,4 +183,8 @@
       }
     }
   }
+}
+
+.movies__cards {
+  margin-top: 3.125rem;
 }

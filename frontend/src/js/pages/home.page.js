@@ -2,7 +2,10 @@ import {
   fetchRandomMovie,
   fetchTrendingMovies,
 } from "../controllers/movie_controller.js";
-import { fetchUserlist } from "../controllers/userlist_controller.js";
+import {
+  fetchUserlist,
+  removeItemFromUserlist,
+} from "../controllers/userlist_controller.js";
 import { initSwiper } from "../ui/slider.js";
 import { addItemToUserlist } from "../controllers/userlist_controller.js";
 
@@ -25,7 +28,7 @@ const displayHeroMovie = async () => {
   <div 
     class="hero__content"
     data-tmdb-id="${movie.id}"
-    data-media-type="${movie.media_type}"
+    data-media-type="movie"
     data-title="${movie.title}"
     data-poster-path="${movie.poster_path}"
     data-release-date="${movie.release_date || ""}"
@@ -42,7 +45,7 @@ const displayHeroMovie = async () => {
         ${userlist.find((item) => item.tmdb_id === movie.id) ? `<i class="fa-solid fa-check"></i> In The List` : `<i class="fa-solid fa-plus"></i> Add To List`}
       </button>
 
-      <a href="singlemovie.html?id=${movie.id}" class="btn btn-secondary">
+      <a href="singlemovie.html?id=${movie.id}&type=movie" class="btn btn-secondary">
         <i class="fa-regular fa-circle-question"></i>
         More Info
       </a>
@@ -67,7 +70,7 @@ const displaySwiperMovies = async () => {
   data.results.forEach((movie) => {
     swiperWrapper.innerHTML += `
       <div class="swiper-slide">
-        <a href="singlemovie.html?id=${movie.id}" class="content-card" data-tmdb-id="${movie.id}" data-media-type="${movie.media_type}" data-title="${movie.title || movie.name}" data-poster-path="${movie.poster_path}" data-release-date="${movie.release_date || ""}" data-vote-average="${movie.vote_average || ""}">
+        <a href="singlemovie.html?id=${movie.id}&type=movie" class="content-card" data-tmdb-id="${movie.id}" data-media-type="movie" data-title="${movie.title || movie.name}" data-poster-path="${movie.poster_path}" data-release-date="${movie.release_date || ""}" data-vote-average="${movie.vote_average || ""}">
           <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="${movie.title || movie.name}" />
           <div class="content-card__info">
           <div class="content-card__text">
@@ -77,7 +80,7 @@ const displaySwiperMovies = async () => {
             <p>${movie.release_date ? movie.release_date.slice(0, 4) : ""}</p>
           </div>
           </div>
-            <button class="btn btn-addToList">${userlist.find((item) => item.tmdb_id === movie.id) ? `<i class="fa-solid fa-check"></i> In The List` : `<i class="fa-solid fa-plus"></i> Add To List`}</button>
+            <button class="btn btn-addToList">${userlist.find((item) => item.tmdb_id === movie.id) ? ` Remove From List` : `<i class="fa-solid fa-plus"></i> Add To List`}</button>
           </div>
         </a>
       </div>
@@ -88,8 +91,9 @@ const displaySwiperMovies = async () => {
 };
 
 document.addEventListener("click", async (e) => {
-  const button = e.target.closest(".btn-addToList");
+  const button = e.target.closest(".btn-addToList, .btn-watched, .btn-like");
   if (!button) return;
+
   e.preventDefault();
   e.stopPropagation();
 
@@ -98,7 +102,12 @@ document.addEventListener("click", async (e) => {
 
   if (!container) return;
 
-  const item = {
+  const tmdbId = parseInt(container.dataset.tmdbId);
+
+  let userlist = await fetchUserlist();
+  let existingItem = userlist.find((item) => item.tmdb_id === tmdbId);
+
+  const newItem = {
     tmdb_id: container.dataset.tmdbId,
     media_type: container.dataset.mediaType,
     title: container.dataset.title,
@@ -106,11 +115,22 @@ document.addEventListener("click", async (e) => {
     release_date: container.dataset.releaseDate,
     vote_average: container.dataset.voteAverage,
   };
+  if (button.classList.contains("btn-addToList")) {
+    if (!existingItem) {
+      const created = await addItemToUserlist(newItem);
 
-  const result = await addItemToUserlist(item);
+      if (created) {
+        button.innerHTML = `<i class="fa-solid fa-check"></i> In The List`;
+        existingItem = created;
+      }
+    } else {
+      const deleted = await removeItemFromUserlist(existingItem.id);
 
-  if (result)
-    button.innerHTML = `<i class="fa-solid fa-check"></i> In The List`;
+      if (deleted) {
+        button.innerHTML = `<i class="fa-solid fa-plus"></i> Add To List`;
+      }
+    }
+  }
 });
 
 export const initHome = () => {

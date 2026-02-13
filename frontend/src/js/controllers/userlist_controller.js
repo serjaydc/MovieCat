@@ -1,7 +1,6 @@
 import { apiList } from "../api/api.js";
 import { notyf } from "../ui/notyf.js";
 import { checkAuth } from "../auth/auth_guard.js";
-import { fetchMovies, fetchTVShows } from "./movie_controller.js";
 
 export const fetchUserlist = async () => {
   const { token } = checkAuth();
@@ -64,6 +63,23 @@ export const updateItemFromUserlist = async (id, updates) => {
     notyf.error(result.message || "Something went wrong");
     return null;
   }
+
+  if ("watched" in updates) {
+    if (updates.watched === true) {
+      notyf.success("Marked as Watched");
+    } else {
+      notyf.success("Removed from Watched");
+    }
+  }
+
+  if ("liked" in updates) {
+    if (updates.liked === true) {
+      notyf.success("Added to Liked");
+    } else {
+      notyf.success("Removed from Liked");
+    }
+  }
+
   return result;
 };
 

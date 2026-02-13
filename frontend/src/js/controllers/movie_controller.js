@@ -1,6 +1,5 @@
 import { apiTMDB } from "../api/api.js";
 import { notyf } from "../ui/notyf.js";
-// import { checkAuth } from "./auth_guard.js";
 
 export const fetchMovies = async () => {
   const res = await fetch(`${apiTMDB}/movies`);

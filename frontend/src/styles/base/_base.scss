@@ -11,6 +11,10 @@ html {
   padding-top: 6.25rem;
 }
 
+.pb-100 {
+  margin-bottom: 3.125rem;
+}
+
 .container {
   width: 100%;
   max-width: 1440px;
@@ -93,7 +97,7 @@ html {
     background-color: var(--color-purple-600);
   }
 
-  &:active {
+  &--active {
     background-color: var(--color-purple-700);
   }
 }
@@ -104,7 +108,7 @@ html {
     background-color: var(--color-pink-600);
   }
 
-  &:active {
+  &--active {
     background-color: var(--color-pink-700);
   }
 }

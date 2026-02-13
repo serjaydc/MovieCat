@@ -2,11 +2,10 @@ import {
   fetchUserlist,
   removeItemFromUserlist,
 } from "../controllers/userlist_controller.js";
-import { fetchMovies } from "../controllers/movie_controller.js";
 
 const displayUserlist = async () => {
   const data = await fetchUserlist();
-  const movies = await fetchMovies();
+
   if (!data) return;
 
   const listCards = document.querySelector(".list__cards");
@@ -15,7 +14,7 @@ const displayUserlist = async () => {
   listCards.innerHTML = "";
 
   data.forEach((item) => {
-    listCards.innerHTML += `<a href="singlemovie.html?id=${movies.results.find((movie) => movie.id === item.tmdb_id).id}" class="content-card" data-id="${item.id}">
+    listCards.innerHTML += `<a href="singlemovie.html?id=${item.tmdb_id}&type=${item.media_type}" class="content-card" data-id="${item.id}">
           <img src="https://image.tmdb.org/t/p/w500/${item.poster_path}" alt="${item.title}" />
           <div class="content-card__info">
           <div class="content-card__text">
