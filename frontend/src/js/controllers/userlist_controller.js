@@ -3,24 +3,29 @@ import { notyf } from "../ui/notyf.js";
 import { checkAuth } from "../auth/auth_guard.js";
 
 export const fetchUserlist = async () => {
-  const { token } = checkAuth();
+  const token = localStorage.getItem("token");
 
-  const res = await fetch(`${apiList}/`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  const data = await res.json();
-
-  if (!res.ok) {
-    notyf.error(data.message || "Something went wrong");
-    return null;
+  if (!token) {
+    return [];
   }
 
-  return data;
+  try {
+    const res = await fetch(`${apiList}/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!res.ok) {
+      return [];
+    }
+
+    const data = await res.json();
+    return data || [];
+  } catch (error) {
+    console.log("Userlist fetch failed:", error);
+    return [];
+  }
 };
 
 export const addItemToUserlist = async (data) => {

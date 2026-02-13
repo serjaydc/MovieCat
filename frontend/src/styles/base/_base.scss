@@ -124,6 +124,27 @@ html {
   }
 }
 
+.btn-delete {
+  @extend .btn-primary;
+  background-color: var(--color-pink-700);
+  color: var(--text-primary);
+  &:hover {
+    background-color: var(--color-pink-600);
+  }
+}
+
+.btn-filter {
+  @extend .btn-secondary;
+
+  &:hover {
+    background-color: var(--color-purple-600);
+  }
+
+  &--active {
+    background-color: var(--color-purple-700);
+  }
+}
+
 .btn-icon {
   background: none;
   border: none;

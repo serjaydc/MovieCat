@@ -6,7 +6,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
 
-    userlist = db.relationship('UserListItem', backref='user', lazy=True)
+    userlist = db.relationship('UserListItem', backref='user', lazy=True, cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
@@ -17,7 +17,7 @@ class User(db.Model):
 
 class UserListItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
     tmdb_id = db.Column(db.Integer, nullable=False)
     media_type = db.Column(db.String(10), nullable=False)
 

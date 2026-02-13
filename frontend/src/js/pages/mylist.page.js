@@ -6,6 +6,8 @@ import {
 const displayUserlist = async () => {
   const data = await fetchUserlist();
 
+  const token = localStorage.getItem("token");
+
   if (!data) return;
 
   const listCards = document.querySelector(".list__cards");
@@ -27,6 +29,10 @@ const displayUserlist = async () => {
           </div>
         </a>`;
   });
+  if (!token) {
+    listItems.textContent = "Please Login To View Your Saved Items";
+    return;
+  }
 
   listItems.textContent = data.length
     ? `${data.length} Items Saved`

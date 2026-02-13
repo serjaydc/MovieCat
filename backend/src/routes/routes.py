@@ -56,7 +56,7 @@ def by_genre(media_type, genre_id):
 
 @tmdb_routes.route("/trending")
 def trending():
-    return jsonify(tmdb("/trending/all/week"))
+    return jsonify(tmdb("/trending/all/day"))
 
 @tmdb_routes.route("/new-releases")
 def new_releases():

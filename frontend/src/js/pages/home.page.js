@@ -8,6 +8,7 @@ import {
 } from "../controllers/userlist_controller.js";
 import { initSwiper } from "../ui/slider.js";
 import { addItemToUserlist } from "../controllers/userlist_controller.js";
+import { notyf } from "../ui/notyf.js";
 
 const displayHeroMovie = async () => {
   const movie = await fetchRandomMovie();
@@ -104,6 +105,8 @@ document.addEventListener("click", async (e) => {
 
   const tmdbId = parseInt(container.dataset.tmdbId);
 
+  const token = localStorage.getItem("token");
+
   let userlist = await fetchUserlist();
   let existingItem = userlist.find((item) => item.tmdb_id === tmdbId);
 
@@ -116,6 +119,11 @@ document.addEventListener("click", async (e) => {
     vote_average: container.dataset.voteAverage,
   };
   if (button.classList.contains("btn-addToList")) {
+    if (!token) {
+      notyf.error("You must be logged in to add to your list.");
+      return;
+    }
+
     if (!existingItem) {
       const created = await addItemToUserlist(newItem);
 

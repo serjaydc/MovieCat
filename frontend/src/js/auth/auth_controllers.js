@@ -1,6 +1,7 @@
 import { notyf } from "../ui/notyf.js";
 import { apiAuth } from "../api/api.js";
 import { checkAuth } from "./auth_guard.js";
+import { isPasswordValid } from "../ui/auth.js";
 
 export function initLogin() {
   const form = document.getElementById("loginForm");
@@ -52,6 +53,11 @@ export function initRegister() {
       password: document.getElementById("password").value.trim(),
     };
 
+    if (!isPasswordValid(data.password)) {
+      notyf.error("Password does not meet requirements");
+      return;
+    }
+
     try {
       const res = await fetch(`${apiAuth}/register`, {
         method: "POST",
@@ -79,4 +85,70 @@ export function initRegister() {
   });
 }
 
-export function initProfile() {}
+export async function initProfile() {
+  try {
+    const { token } = checkAuth();
+
+    const res = await fetch(`${apiAuth}/profile`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      notyf.error(data.message || "Something went wrong");
+      return;
+    }
+
+    return data;
+  } catch (error) {
+    notyf.error("Server error. Please try again later.");
+  }
+}
+
+export async function initLogout() {
+  try {
+    localStorage.removeItem("token");
+
+    notyf.success("Goodbye!");
+
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 1000);
+  } catch (error) {
+    notyf.error("Server error. Please try again later.");
+  }
+}
+
+export async function deleteAccount() {
+  try {
+    const { token } = checkAuth();
+
+    const res = await fetch(`${apiAuth}/delete`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      notyf.error(data.message || "Something went wrong");
+      return;
+    }
+
+    localStorage.removeItem("token");
+    notyf.success("Account deleted!");
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 1500);
+  } catch (error) {
+    notyf.error("Server error. Please try again later.");
+  }
+}

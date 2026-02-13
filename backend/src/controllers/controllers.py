@@ -68,6 +68,7 @@ def logout():
     return {"message": "Logout successful"}, 200
 
 
+
 def delete(user_id):
     user = User.query.get(user_id)
 

@@ -143,11 +143,11 @@ const displaySingleMovie = async (id, type) => {
       <ul class="show__stats">
         <li>
           <span>Budget</span>
-          <span><i class="fa-solid fa-sterling-sign"></i> ${media.budget ? media.budget : "N/A"}</span>
+          <span><i class="fa-solid fa-sterling-sign"></i> ${media.budget ? media.budget.toLocaleString() : "N/A"}</span>
         </li>
         <li>
           <span>Revenue</span>
-          <span><i class="fa-solid fa-sterling-sign"></i> ${media.revenue.toLocaleString()}</span>
+          <span><i class="fa-solid fa-sterling-sign"></i> ${media.revenue ? media.revenue.toLocaleString() : "N/A"}</span>
         </li>
         <li>
           <span>Production Companies</span>
@@ -252,6 +252,8 @@ document.addEventListener("click", async (e) => {
   const tmdbId = parseInt(container.dataset.tmdbId);
   let existingItem = userlistState.find((i) => i.tmdb_id === tmdbId);
 
+  const token = localStorage.getItem("token");
+
   const newItem = {
     tmdb_id: tmdbId,
     media_type: container.dataset.mediaType,
@@ -261,17 +263,11 @@ document.addEventListener("click", async (e) => {
     vote_average: container.dataset.voteAverage,
   };
 
-  if (button.classList.contains("btn-share")) {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      notyf.success("Link copied to clipboard");
-    } catch (error) {
-      notyf.error("Failed to copy link");
-    }
-    return;
-  }
-
   if (button.classList.contains("btn-addToList")) {
+    if (!token) {
+      notyf.error("You must be logged in to add to your list.");
+      return;
+    }
     if (!existingItem) {
       const created = await addItemToUserlist(newItem);
       if (!created) return;
@@ -321,6 +317,16 @@ document.addEventListener("click", async (e) => {
 
       existingItem.liked = !existingItem.liked;
     }
+  }
+
+  if (button.classList.contains("btn-share")) {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      notyf.success("Link copied to clipboard");
+    } catch (error) {
+      notyf.error("Failed to copy link");
+    }
+    return;
   }
 
   syncButtons(tmdbId);

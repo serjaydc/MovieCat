@@ -37,7 +37,7 @@
     gap: 0.25rem;
 
     label {
-      font-size: 16px;
+      font-size: 1rem;
       color: var(--text-secondary);
     }
 
@@ -52,6 +52,37 @@
     &--ext {
       display: flex;
       justify-content: space-between;
+    }
+  }
+  &__strength {
+    &--title {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.25rem;
+    }
+    &--list {
+      background-color: var(--bg-secondary);
+      padding: 0.5rem;
+      border: 1px solid var(--border-primary);
+      border-radius: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    &--item {
+      font-size: 1.125rem;
+      span {
+        &:nth-child(1) {
+          color: var(--color-pink-base);
+        }
+      }
+      &.valid {
+        span {
+          &:nth-child(1) {
+            color: var(--color-green-base);
+          }
+        }
+      }
     }
   }
 }
