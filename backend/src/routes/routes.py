@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from controllers.controllers import register, login, logout, profile, delete, tmdb, fetch_user_list, add_list_item, update_list_item, remove_list_item
+from ..controllers.controllers import register, login, logout, profile, delete, tmdb, fetch_user_list, add_list_item, update_list_item, remove_list_item
 
 # AUTH ROUTES
 auth_routes = Blueprint('auth_routes', __name__, url_prefix='/api/auth')

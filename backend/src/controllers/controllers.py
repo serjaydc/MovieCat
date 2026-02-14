@@ -1,8 +1,8 @@
 from flask_jwt_extended import create_access_token
-from extensions import db, bcrypt
-from models.user import User, UserListItem
+from ..extensions import db, bcrypt
+from ..models.user import User, UserListItem
 import requests
-from config import Config
+from ..config import Config
 
 TMDB_BASE_URL = Config.TMDB_BASE_URL
 TMDB_API_KEY = Config.TMDB_API_KEY
