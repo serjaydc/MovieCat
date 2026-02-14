@@ -140,8 +140,36 @@ html {
     background-color: var(--color-purple-600);
   }
 
-  &--active {
+  &.active {
     background-color: var(--color-purple-700);
+
+    &:hover {
+      background-color: var(--color-purple-600);
+    }
+  }
+}
+
+.btn-page {
+  @extend .btn-secondary;
+
+  &:hover {
+    background-color: var(--color-purple-600);
+  }
+
+  &.active {
+    background-color: var(--color-purple-700);
+
+    &:hover {
+      background-color: var(--color-purple-600);
+    }
+  }
+}
+
+.btn-options {
+  @extend .btn-secondary;
+  background-color: var(--color-purple-700);
+  &:hover {
+    background-color: var(--color-purple-600);
   }
 }
 

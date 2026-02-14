@@ -10,6 +10,39 @@ import { initSwiper } from "../ui/slider.js";
 import { addItemToUserlist } from "../controllers/userlist_controller.js";
 import { notyf } from "../ui/notyf.js";
 
+const FAQ = [
+  {
+    question: "What is MovieCat and who is it for?",
+    answer:
+      "MovieCat is an online movie management platform designed for users who want to discover, explore and organise movies and TV shows in one place. It is suitable for casual viewers looking for recommendations as well as movie enthusiasts who want to manage personalised watchlists.",
+  },
+  {
+    question: "Do I need to create an account to use MovieCat?",
+    answer:
+      "Users can browse movies and TV shows without creating an account. However, registration is required to create and manage a personalised list of favourite movies. Authentication ensures that each user's saved content remains secure and private.",
+  },
+  {
+    question: "Where does MovieCat get its movie data from?",
+    answer:
+      "MovieCat integrates with an external movie database API (TMDB) to retrieve up-to-date information including titles, genres, release dates, ratings and descriptions. This ensures that the content displayed on the platform remains current and accurate.",
+  },
+  {
+    question: "Can I filter and sort movies on the platform?",
+    answer:
+      "Yes. MovieCat provides filtering and sorting functionality that allows users to organise content by type (movies or TV shows), genre, release year, rating and more. Pagination is also implemented to ensure smooth browsing when viewing large collections of content.",
+  },
+  {
+    question: "Is MovieCat responsive and mobile-friendly?",
+    answer:
+      "Yes. The platform is fully responsive and designed to work across multiple devices, including desktops, tablets and mobile phones. The user interface adapts to different screen sizes to provide a consistent and user-friendly experience.",
+  },
+  {
+    question: "How is user data protected?",
+    answer:
+      "MovieCat implements secure authentication and authorisation mechanisms to protect user accounts. Sensitive information such as passwords is securely handled, and only authenticated users can access and modify their personal movie lists.",
+  },
+];
+
 const displayHeroMovie = async () => {
   const movie = await fetchRandomMovie();
   const userlist = await fetchUserlist();
@@ -91,6 +124,47 @@ const displaySwiperMovies = async () => {
   initSwiper(swiper);
 };
 
+const displayFAQ = () => {
+  const faqWrapper = document.querySelector(".faq__wrapper");
+
+  faqWrapper.innerHTML = "";
+
+  FAQ.forEach((item) => {
+    faqWrapper.innerHTML += `
+      <div class="faq__item">
+        <div class="faq__question">
+          <p class="btn-faq">${item.question}</p>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq__answer">
+          <p>${item.answer}</p>
+        </div>
+      </div>
+    `;
+  });
+};
+
+const initNewsletter = () => {
+  const newsletterForm = document.querySelector(".newsletter__form");
+
+  newsletterForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const input = e.target.querySelector("input");
+    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+
+    if (!input.value) {
+      notyf.error("Please enter your email address.");
+      return;
+    }
+    if (!regex.test(input.value)) {
+      notyf.error("Please enter a valid email address.");
+      return;
+    }
+    notyf.success("Thanks for subscribing!");
+    input.value = "";
+  });
+};
+
 document.addEventListener("click", async (e) => {
   const button = e.target.closest(".btn-addToList, .btn-watched, .btn-like");
   if (!button) return;
@@ -141,7 +215,28 @@ document.addEventListener("click", async (e) => {
   }
 });
 
+document.addEventListener("click", (e) => {
+  const question = e.target.closest(".faq__question");
+  if (!question) return;
+
+  const faqItem = question.closest(".faq__item");
+  const answer = faqItem.querySelector(".faq__answer");
+  const icon = question.querySelector("i");
+
+  answer.classList.toggle("active");
+
+  if (answer.classList.contains("active")) {
+    icon.classList.remove("fa-chevron-down");
+    icon.classList.add("fa-x");
+  } else {
+    icon.classList.remove("fa-x");
+    icon.classList.add("fa-chevron-down");
+  }
+});
+
 export const initHome = () => {
   displayHeroMovie();
   displaySwiperMovies();
+  displayFAQ();
+  initNewsletter();
 };

@@ -61,8 +61,8 @@ export const fetchDiscoverByGenre = async (media_type, id) => {
   return data;
 };
 
-export const fetchTrendingMovies = async () => {
-  const res = await fetch(`${apiTMDB}/trending`);
+export const fetchTrendingMovies = async (page = 1) => {
+  const res = await fetch(`${apiTMDB}/trending?page`);
 
   const data = await res.json();
 
