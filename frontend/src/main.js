@@ -1,6 +1,5 @@
 import "./index.scss";
 
-import { displayPassword } from "./js/ui/auth.js";
 import { initHeader } from "./js/ui/header.js";
 
 import { initLogin, initRegister } from "./js/auth/auth_controllers.js";
@@ -13,6 +12,7 @@ import { initTvShows } from "./js/pages/tv.page.js";
 import { initNewAndPopular } from "./js/pages/newandpopular.page.js";
 import { displayProfile } from "./js/pages/profile.page.js";
 import { initExplore } from "./js/pages/explore.page.js";
+import { initPasswordStrength, initShowPassword } from "./js/ui/auth.js";
 
 const page = document.body.dataset.page;
 
@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
       break;
     case "register":
       initRegister();
-      displayPassword();
+      initShowPassword();
+      initPasswordStrength();
       break;
     case "profile":
       displayProfile();

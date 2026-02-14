@@ -1,4 +1,4 @@
-const initShowPassword = () => {
+export const initShowPassword = () => {
   const btnPassword = document.querySelector(".btn-password");
 
   btnPassword.addEventListener("click", () => {
@@ -14,7 +14,7 @@ const initShowPassword = () => {
   });
 };
 
-const initPasswordStrength = () => {
+export const initPasswordStrength = () => {
   const passwordInput = document.getElementById("password");
   const strengthList = document.querySelector(".form__strength--list");
 
@@ -78,9 +78,4 @@ export const isPasswordValid = (password) => {
     /[0-9]/.test(password) &&
     /[!@#$%^&*(),.?":{}|<>]/.test(password)
   );
-};
-
-export const displayPassword = () => {
-  initShowPassword();
-  initPasswordStrength();
 };
