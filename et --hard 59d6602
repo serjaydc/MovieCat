@@ -1,0 +1,15 @@
+[33m1f8b8ff[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{0}: reset: moving to HEAD~5
+[33m6f5d3d9[m[33m ([m[1;31morigin/main[m[33m)[m HEAD@{1}: commit: Deploy v1.2
+[33m0791f37[m HEAD@{2}: commit: Deploy v1.1
+[33mf60770e[m HEAD@{3}: commit: Deploy v1.1
+[33ma05f2e2[m HEAD@{4}: commit: Deploy v1.1
+[33m59d6602[m HEAD@{5}: commit: Deploy v1
+[33m1f8b8ff[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{6}: commit: ExplorePage
+[33mce7774e[m HEAD@{7}: commit: MoviesPage & TVShowsPage & ButtonsFunctionality
+[33m8e4a0b7[m HEAD@{8}: commit: SinglePage
+[33mfeee927[m HEAD@{9}: commit: HomePage & MyListPage
+[33m13006f0[m HEAD@{10}: commit: 'HomePage'
+[33m3f0884a[m HEAD@{11}: commit: Frontend Header & Footer & Pages Layout
+[33m2e18362[m HEAD@{12}: commit: Backend Userlist & TMDB Movies
+[33m5f4d177[m HEAD@{13}: commit: Frontend Auth
+[33mdba1f1b[m HEAD@{14}: commit (initial): Backend Auth
