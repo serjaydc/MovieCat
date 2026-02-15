@@ -13,6 +13,7 @@ import { initNewAndPopular } from "./js/pages/newandpopular.page.js";
 import { displayProfile } from "./js/pages/profile.page.js";
 import { initExplore } from "./js/pages/explore.page.js";
 import { initPasswordStrength, initShowPassword } from "./js/ui/auth.js";
+import { initContact } from "./js/pages/contact.page.js";
 
 const page = document.body.dataset.page;
 
@@ -52,6 +53,9 @@ document.addEventListener("DOMContentLoaded", () => {
       break;
     case "explore":
       initExplore();
+      break;
+    case "contact":
+      initContact();
       break;
     default:
       break;

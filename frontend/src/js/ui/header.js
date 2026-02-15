@@ -31,11 +31,24 @@ const headerAuthCheck = () => {
   }
 };
 
+const updateHeaderBtn = () => {
+  const menuBtn = document.querySelector(".menu-btn");
+  if (headerInfo.classList.contains("active")) {
+    menuBtn.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
+  } else {
+    menuBtn.innerHTML = `<i class="fa-solid fa-bars"></i>`;
+  }
+};
+
 const headerMenuToggle = () => {
   const menuBtn = document.querySelector(".menu-btn");
+  const headerInfo = document.querySelector(".header__info");
+
+  if (!menuBtn) return;
 
   menuBtn.addEventListener("click", () => {
     headerInfo.classList.toggle("active");
+    updateHeaderBtn();
   });
 };
 

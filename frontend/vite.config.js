@@ -21,6 +21,7 @@ export default defineConfig({
         singlemovie: resolve(__dirname, "singlemovie.html"),
         tvshows: resolve(__dirname, "tvshows.html"),
         errorpage: resolve(__dirname, "404.html"),
+        contact: resolve(__dirname, "contact.html"),
       },
     },
   },

@@ -57,7 +57,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      background-color: var(--bg-secondary);
+      background-color: var(--bg-primary);
       overflow: hidden;
       padding: 0 1rem;
       height: 0;
@@ -81,16 +81,6 @@
     }
     &__link {
       font-size: 1.5rem;
-    }
-    &__cta {
-      flex-direction: column;
-      width: 100%;
-
-      a {
-        max-width: 250px;
-        width: 100%;
-        text-align: center;
-      }
     }
   }
 }

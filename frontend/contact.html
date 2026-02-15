@@ -17,7 +17,7 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body data-page="tvshows">
+  <body data-page="contact">
     <div id="app">
       <header class="header">
         <div class="container">
@@ -57,112 +57,37 @@
           </div>
         </div>
       </header>
-      <main class="main main--tvshows">
-        <section class="movies pt-100">
+      <main class="main main--contact">
+        <section class="contact">
           <div class="container">
-            <div class="movies__wrapper">
-              <h1 class="page-title">TV Shows</h1>
-              <p class="page-description">Binge-worthy series and shows</p>
-              <div class="movies__cards">
-                <div class="swiper swiper--action pb-100">
-                  <h2>Action & Adventure</h2>
-                  <div class="swiper-wrapper">
-                    <!-- Movies -->
-                  </div>
-                  <div class="swiper-nav">
-                    <div class="swiper-btn swiper-btn-prev">
-                      <i class="fa-solid fa-angle-left"></i>
-                    </div>
-                    <div class="swiper-btn swiper-btn-next">
-                      <i class="fa-solid fa-angle-right"></i>
-                    </div>
-                  </div>
+            <div class="contact__wrapper">
+              <img
+                src="/form-bg.png"
+                alt="Register Image"
+                class="contact__bg"
+              />
+              <form class="form" id="contactForm">
+                <h1 class="form__title">Contact Form</h1>
+                <div class="form__group">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" />
                 </div>
-                <div class="swiper swiper--science-fiction pb-100">
-                  <h2>Science Fiction</h2>
-                  <div class="swiper-wrapper">
-                    <!-- Movies -->
-                  </div>
-                  <div class="swiper-nav">
-                    <div class="swiper-btn swiper-btn-prev">
-                      <i class="fa-solid fa-angle-left"></i>
-                    </div>
-                    <div class="swiper-btn swiper-btn-next">
-                      <i class="fa-solid fa-angle-right"></i>
-                    </div>
-                  </div>
+                <div class="form__group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" />
                 </div>
-                <div class="swiper swiper--comedy pb-100">
-                  <h2>Comedy</h2>
-                  <div class="swiper-wrapper">
-                    <!-- Movies -->
-                  </div>
-                  <div class="swiper-nav">
-                    <div class="swiper-btn swiper-btn-prev">
-                      <i class="fa-solid fa-angle-left"></i>
-                    </div>
-                    <div class="swiper-btn swiper-btn-next">
-                      <i class="fa-solid fa-angle-right"></i>
-                    </div>
-                  </div>
+                <div class="form__group">
+                  <label for="subject">Subject</label>
+                  <input type="text" id="subject" name="subject" />
                 </div>
-                <div class="swiper swiper--crime pb-100">
-                  <h2>Crime</h2>
-                  <div class="swiper-wrapper">
-                    <!-- Movies -->
-                  </div>
-                  <div class="swiper-nav">
-                    <div class="swiper-btn swiper-btn-prev">
-                      <i class="fa-solid fa-angle-left"></i>
-                    </div>
-                    <div class="swiper-btn swiper-btn-next">
-                      <i class="fa-solid fa-angle-right"></i>
-                    </div>
-                  </div>
+                <div class="form__group">
+                  <label for="message">Message</label>
+                  <textarea type="text" id="message" name="message"></textarea>
                 </div>
-                <div class="swiper swiper--fantasy pb-100">
-                  <h2>Fantasy</h2>
-                  <div class="swiper-wrapper">
-                    <!-- Movies -->
-                  </div>
-                  <div class="swiper-nav">
-                    <div class="swiper-btn swiper-btn-prev">
-                      <i class="fa-solid fa-angle-left"></i>
-                    </div>
-                    <div class="swiper-btn swiper-btn-next">
-                      <i class="fa-solid fa-angle-right"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper swiper--romance pb-100">
-                  <h2>Romance</h2>
-                  <div class="swiper-wrapper">
-                    <!-- Movies -->
-                  </div>
-                  <div class="swiper-nav">
-                    <div class="swiper-btn swiper-btn-prev">
-                      <i class="fa-solid fa-angle-left"></i>
-                    </div>
-                    <div class="swiper-btn swiper-btn-next">
-                      <i class="fa-solid fa-angle-right"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper swiper--thriller pb-100">
-                  <h2>Thriller</h2>
-                  <div class="swiper-wrapper">
-                    <!-- Movies -->
-                  </div>
-                  <div class="swiper-nav">
-                    <div class="swiper-btn swiper-btn-prev">
-                      <i class="fa-solid fa-angle-left"></i>
-                    </div>
-                    <div class="swiper-btn swiper-btn-next">
-                      <i class="fa-solid fa-angle-right"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                <button type="submit" class="btn btn-primary">
+                  Send Message
+                </button>
+              </form>
             </div>
           </div>
         </section>

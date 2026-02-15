@@ -101,11 +101,6 @@
     border-radius: var(--border-radius-sm);
     padding: 1rem;
     cursor: default;
-    transition: background-color 0.3s ease-in-out;
-
-    &:hover {
-      background-color: var(--bg-button);
-    }
   }
   &__question {
     display: flex;
