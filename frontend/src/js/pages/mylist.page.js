@@ -3,9 +3,10 @@ import {
   removeItemFromUserlist,
 } from "../controllers/userlist_controller.js";
 
+// Display userlist
 const displayUserlist = async () => {
   const data = await fetchUserlist();
-
+  // Check if the user is authenticated
   const token = localStorage.getItem("token");
 
   if (!data) return;
@@ -14,7 +15,7 @@ const displayUserlist = async () => {
   const listItems = document.querySelector(".list-items");
 
   listCards.innerHTML = "";
-
+  // Loop through the data and add each item to the list
   data.forEach((item) => {
     listCards.innerHTML += `<a href="singlemovie.html?id=${item.tmdb_id}&type=${item.media_type}" class="content-card" data-id="${item.id}">
           <img src="https://image.tmdb.org/t/p/w500/${item.poster_path}" alt="${item.title}" />
@@ -29,16 +30,18 @@ const displayUserlist = async () => {
           </div>
         </a>`;
   });
+  // Check if the user is authenticated
   if (!token) {
     listItems.textContent = "Please Login To View Your Saved Items";
     return;
   }
-
+  // Check if the data is empty
   listItems.textContent = data.length
     ? `${data.length} Items Saved`
     : "No items Saved";
 };
 
+// Remove item from userlist
 document.addEventListener("click", async (e) => {
   const button = e.target.closest(".btn-remove");
   if (!button) return;

@@ -1,8 +1,10 @@
 import os
 from datetime import timedelta
 
+# Get the directory of the current file
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+# Load environment variables
 class Config:
     SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key")
     JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "dev-jwt-secret")

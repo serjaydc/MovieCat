@@ -48,10 +48,6 @@ const syncButtons = (tmdbId) => {
   `;
 };
 
-/* =========================
-   SINGLE MOVIE PAGE
-========================= */
-
 const displaySingleMovie = async (id, type) => {
   let media;
 
@@ -331,10 +327,6 @@ document.addEventListener("click", async (e) => {
 
   syncButtons(tmdbId);
 });
-
-/* =========================
-   INIT PAGE
-========================= */
 
 export const initSingle = async () => {
   const params = new URLSearchParams(window.location.search);

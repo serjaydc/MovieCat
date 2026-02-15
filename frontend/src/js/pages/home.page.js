@@ -43,6 +43,7 @@ const FAQ = [
   },
 ];
 
+// Display the hero movie
 const displayHeroMovie = async () => {
   const movie = await fetchRandomMovie();
   const userlist = await fetchUserlist();
@@ -95,6 +96,7 @@ const displayHeroMovie = async () => {
 `;
 };
 
+// Display swiper movies
 const displaySwiperMovies = async () => {
   const data = await fetchTrendingMovies();
   const userlist = await fetchUserlist();
@@ -124,6 +126,7 @@ const displaySwiperMovies = async () => {
   initSwiper(swiper);
 };
 
+// Display faq
 const displayFAQ = () => {
   const faqWrapper = document.querySelector(".faq__wrapper");
 
@@ -144,6 +147,7 @@ const displayFAQ = () => {
   });
 };
 
+// Display and init newsletter
 const initNewsletter = () => {
   const newsletterForm = document.querySelector(".newsletter__form");
 
@@ -165,6 +169,7 @@ const initNewsletter = () => {
   });
 };
 
+// Add to list
 document.addEventListener("click", async (e) => {
   const button = e.target.closest(".btn-addToList, .btn-watched, .btn-like");
   if (!button) return;
@@ -215,6 +220,7 @@ document.addEventListener("click", async (e) => {
   }
 });
 
+// FAQ
 document.addEventListener("click", (e) => {
   const question = e.target.closest(".faq__question");
   if (!question) return;

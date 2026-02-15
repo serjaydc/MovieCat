@@ -155,3 +155,35 @@
     }
   }
 }
+
+.error {
+  &__wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  &__content {
+    h1 {
+      font-size: clamp(4rem, 4vw, 10rem);
+      background: var(--bg-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    h2 {
+      font-size: clamp(2rem, 2vw, 4rem);
+    }
+    p {
+      font-size: clamp(1rem, 1vw, 1.25rem);
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+  }
+  &__cta {
+    display: flex;
+    gap: 0.5rem;
+  }
+}

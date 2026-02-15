@@ -8,20 +8,21 @@ import { initSwiper } from "../ui/slider";
 
 import { fetchUserlist } from "../controllers/userlist_controller.js";
 
+// Display shows
 const displaySwiperShows = async (swiperClass, fetchFunction, mediaType) => {
   const data = await fetchFunction();
   const userlist = await fetchUserlist();
 
   const swiper = document.querySelector(`.${swiperClass}`);
   const swiperWrapper = swiper.querySelector(".swiper-wrapper");
-
+  // check if data is empty
   if (!data?.results?.length) return;
-
+  // clear swiper container
   swiperWrapper.innerHTML = "";
-
+  // loop through movies
   data.results.forEach((movie) => {
     const isInList = userlist.find((item) => item.tmdb_id === movie.id);
-
+    // add movie to swiper
     swiperWrapper.innerHTML += `
       <div class="swiper-slide">
         <a href="singlemovie.html?id=${movie.id}&type=${mediaType}"

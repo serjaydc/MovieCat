@@ -2,20 +2,21 @@ import { fetchDiscoverByGenre } from "../controllers/movie_controller.js";
 import { initSwiper } from "../ui/slider.js";
 import { fetchUserlist } from "../controllers/userlist_controller.js";
 
+// Display tv shows
 const displaySwiperTV = async (media_type, genreId, swiperClass) => {
   const data = await fetchDiscoverByGenre(media_type, genreId);
   const userlist = await fetchUserlist();
-
+  // find swiper container
   const swiper = document.querySelector(`.${swiperClass}`);
   const swiperWrapper = swiper.querySelector(".swiper-wrapper");
-
+  // check if data is empty
   if (!data?.results?.length) return;
-
+  // clear swiper container
   swiperWrapper.innerHTML = "";
-
+  // loop through movies
   data.results.forEach((movie) => {
     const isInList = userlist.find((item) => item.tmdb_id === movie.id);
-
+    // add movie to swiper
     swiperWrapper.innerHTML += `
       <div class="swiper-slide">
         <a href="singlemovie.html?id=${movie.id}&type=tv"

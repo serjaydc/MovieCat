@@ -73,7 +73,6 @@ def top_rated():
 # PERSONAL LIST ROUTES
 list_routes = Blueprint('list_routes', __name__, url_prefix='/api/list')
 
-
 @list_routes.route("/", methods=["GET"])
 @jwt_required()
 def user_list():

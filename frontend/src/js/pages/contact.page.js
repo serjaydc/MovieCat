@@ -5,14 +5,14 @@ export const initContact = () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     e.stopPropagation();
-
+    // Get the form data
     const data = {
       name: document.getElementById("name").value.trim(),
       email: document.getElementById("email").value.trim(),
       subject: document.getElementById("subject").value.trim(),
       message: document.getElementById("message").value.trim(),
     };
-
+    // Validate the data
     const regexName = /^[a-zA-Z ]+$/g;
     const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
     const regexSubject = /^[a-zA-Z0-9 ]+$/g;
@@ -36,7 +36,7 @@ export const initContact = () => {
       notyf.error("Please enter a message.");
       return;
     }
-
+    // Send the message
     notyf.success("Message sent!");
     form.reset();
     setTimeout(() => {

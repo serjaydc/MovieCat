@@ -27,45 +27,47 @@ const GENRES = {
   thriller: 53,
 };
 
+// Filter movies based on the Search input
 const initSearch = () => {
   const searchInput = document.querySelector(".shows__search-field input");
 
   searchInput.addEventListener("input", () => {
     const query = searchInput.value.trim().toLowerCase();
-
+    // If the query is empty, show all movies
     if (!query) {
       currentPage = 1;
       filterAndSort();
       return;
     }
-
+    // Filter movies based on the query
     const filtered = allMovies.filter((movie) => {
       const title = (movie.title || movie.name || "").toLowerCase();
       return title.includes(query);
     });
-
+    // Render the filtered movies
     renderSearchResults(filtered);
   });
 };
-
+// Render the search results
 const renderSearchResults = async (movies) => {
   const userlist = await fetchUserlist();
-
+  // Calculate the total number of pages
   const totalPages = Math.ceil(movies.length / itemsPerPage);
-
+  // Calculate the start and end index
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-
+  // Get the paginated movies
   const paginated = movies.slice(start, end);
-
+  // Render the movies
   renderMovies(paginated, userlist);
   renderPagination(totalPages);
 };
 
+// Filter and sort the movies
 const filterAndSort = async () => {
   const userlist = await fetchUserlist();
   let filteredMovies = [...allMovies];
-
+  // FILTER
   if (filtersState.type !== "all") {
     filteredMovies = filteredMovies.filter(
       (movie) => movie.media_type === filtersState.type,
@@ -83,7 +85,7 @@ const filterAndSort = async () => {
       movie.genre_ids?.includes(GENRES[filtersState.genre]),
     );
   }
-
+  // SORT
   switch (filtersState.sort) {
     case "rating":
       filteredMovies.sort((a, b) => b.vote_average - a.vote_average);
@@ -119,23 +121,24 @@ const filterAndSort = async () => {
 
   // PAGINATION
   const totalPages = Math.ceil(filteredMovies.length / itemsPerPage);
-
+  // If the current page is greater than the total number of pages, go to the first page
   if (currentPage > totalPages) {
     currentPage = 1;
   }
-
+  // Calculate the start and end index
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-
+  // Get the paginated movies
   const paginatedMovies = filteredMovies.slice(start, end);
-
+  // Render the movies
   renderMovies(paginatedMovies, userlist);
   renderPagination(totalPages);
 };
 
+// Filter shows
 const filterShows = () => {
   const filter = document.querySelector(".shows__filter");
-
+  // Filter
   filter.addEventListener("click", (e) => {
     const button = e.target.closest(".btn-filter");
     if (!button) return;
@@ -143,14 +146,14 @@ const filterShows = () => {
     const group = button.closest(".filter-group");
     const groupTitle = group.querySelector("h4").textContent;
 
-    // снимаем active у соседей
+    // Remove active class from all buttons
     group
       .querySelectorAll(".btn-filter")
       .forEach((btn) => btn.classList.remove("active"));
     button.classList.add("active");
 
     const value = button.textContent.toLowerCase();
-
+    // Update filters state
     if (groupTitle === "Type") {
       filtersState.type =
         value === "movies" ? "movie" : value === "tv shows" ? "tv" : "all";
@@ -167,22 +170,23 @@ const filterShows = () => {
     if (groupTitle === "Genre") {
       filtersState.genre = value === "all" ? "all" : value;
     }
-
+    // Reset current page
     currentPage = 1;
     filterAndSort();
   });
 };
 
+// Render pagination
 const renderPagination = (totalPages) => {
   const paginationContainer = document.querySelector(".pagination");
-
+  // If there is only one page, hide the pagination
   if (totalPages <= 1) {
     paginationContainer.innerHTML = "";
     return;
   }
-
+  // Render the pagination
   let buttons = "";
-
+  // Render the buttons
   for (let i = 1; i <= totalPages; i++) {
     buttons += `
       <button class="btn btn-page ${
@@ -192,26 +196,28 @@ const renderPagination = (totalPages) => {
       </button>
     `;
   }
-
+  // Render the pagination
   paginationContainer.innerHTML = buttons;
 };
 
+// Display trending movies
 const displayTrendingMovies = async () => {
   const data = await fetchTrendingMovies();
   allMovies = data?.results || [];
-
+  // Throw an error if there are no movies
   if (!allMovies.length) throw new Error("No movies returned");
-
+  // Render the movies
   filterAndSort();
 };
 
+// Render movies
 const renderMovies = (movies, userlist) => {
   const moviesCards = document.querySelector(".shows__cards");
 
   moviesCards.innerHTML = movies
     .map((movie) => {
       const item = userlist.find((item) => item.tmdb_id === movie.id);
-
+      // Render the movie
       return `
         <a href="singlemovie.html?id=${movie.id}&type=${movie.media_type}"
           class="movie-card"
@@ -254,6 +260,7 @@ const renderMovies = (movies, userlist) => {
     .join("");
 };
 
+// Hide show filters
 const hideShowFilters = () => {
   const filter = document.querySelector(".shows__filter");
   const btn = document.querySelector(".btn-options");
@@ -263,6 +270,7 @@ const hideShowFilters = () => {
   });
 };
 
+// Pagination
 document.addEventListener("click", (e) => {
   const pageBtn = e.target.closest(".btn-page");
   if (!pageBtn) return;
@@ -273,6 +281,7 @@ document.addEventListener("click", (e) => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+// Add to list
 document.addEventListener("click", async (e) => {
   const button = e.target.closest(".btn-addToList");
   if (!button) return;

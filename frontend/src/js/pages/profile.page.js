@@ -5,6 +5,7 @@ import {
 } from "../auth/auth_controllers.js";
 import { fetchUserlist } from "../controllers/userlist_controller.js";
 
+// Display the user profile
 const displayProfileStats = async () => {
   const data = await initProfile();
   const profileDetails = document.querySelector(".profile__details");
@@ -26,6 +27,7 @@ const displayProfileStats = async () => {
     `;
 };
 
+// Display the userlist stats
 const displayUserlistStats = async () => {
   const userlist = await fetchUserlist();
   const profileStats = document.querySelector(".profile__stats");
@@ -64,6 +66,7 @@ const displayUserlistStats = async () => {
   `;
 };
 
+// Logout and delete account
 document.addEventListener("click", async (e) => {
   const button = e.target.closest(".btn-logout, .btn-delete");
   if (!button) return;

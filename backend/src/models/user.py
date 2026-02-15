@@ -1,5 +1,6 @@
 from ..extensions import db
 
+# User model
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
@@ -8,6 +9,7 @@ class User(db.Model):
 
     userlist = db.relationship('UserListItem', backref='user', lazy=True, cascade="all, delete-orphan")
 
+    # Return user as dictionary
     def to_dict(self):
         return {
             "id": self.id,
@@ -15,6 +17,7 @@ class User(db.Model):
             "email": self.email
         }
 
+# UserListItem model
 class UserListItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
@@ -33,7 +36,7 @@ class UserListItem(db.Model):
     __table_args__ = (
     db.UniqueConstraint('user_id', 'tmdb_id', name='unique_user_movie'),
     )
-    
+    # Return user list item as dictionary
     def to_dict(self):
         return {
             "id": self.id,

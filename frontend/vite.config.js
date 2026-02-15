@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
-
 export default defineConfig({
   base: "./",
 
@@ -20,8 +19,8 @@ export default defineConfig({
         newandpopular: resolve(__dirname, "newandpopular.html"),
         singlemovie: resolve(__dirname, "singlemovie.html"),
         tvshows: resolve(__dirname, "tvshows.html"),
-        errorpage: resolve(__dirname, "404.html"),
         contact: resolve(__dirname, "contact.html"),
+        notfound: resolve(__dirname, "404.html"),
       },
     },
   },
